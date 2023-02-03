@@ -7,28 +7,26 @@
 
 export function separateNamesWithAFromRest(array) {
 
-  let new_arr = [];
-  let sub_arr1 = [];
-  let sub_arr2 = [];
-  
-  for (let i = 0; i < array.length; i++) {
+  const resArr = [[], []];
 
-    let ele = array[i];
-
-
-      if ((ele.indexOf('a') > -1) && (sub_arr1.indexOf(ele) === -1)) {
-          sub_arr1.push(ele);
-        }
-      if ((ele.indexOf('a') === -1) && (sub_arr2.indexOf(ele) === -1)) {
-          sub_arr2.push(ele);
-        }
-     
+  for (let name of array) {
+    let haveA = false;
+    for (let char of name) {
+      char = char.toLowerCase();
+      if (char === 'a') {
+        haveA = true;
+      }
+    }
+    if (haveA) {
+      resArr[0].push(name);
+    }
+    else {
+      resArr[1].push(name);
+    }
   }
-  new_arr.push(sub_arr1);
-  new_arr.push(sub_arr2);
-  return new_arr;
-}
 
+  return resArr;
+}
 
 // === TEST YOURSELF ===
 // Once you're finished run the test with "npm run test-20"

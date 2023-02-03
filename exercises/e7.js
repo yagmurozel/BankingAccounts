@@ -5,42 +5,15 @@
 
 export function getClientWithLeastBalance(array) {
 
-  let obj = {};
-  let new_arr = [];
-  let min = Infinity;
-  let secondMin = Infinity;
-  let valuesArray = [];
+  let min = array[0];
 
-  for (let i = 0; i < array.length; i++) {
-    obj = array[i];
-    
-    for (let key in obj) {
-      if (key === 'balance') {
-        let value = obj[key];
-        valuesArray.push(value);
-      }
-    }  
-  }
-
-  for (let i= 0; i< valuesArray.length; i++) {
-    if (valuesArray[i]< min) {
-      secondMin = min;
-      min = valuesArray[i]; 
-      } else if (valuesArray[i]< secondMin) {
-        secondMin = valuesArray[i]; 
+  for (let obj of array) {
+    if (obj.balance < min.balance && obj.balance != 0) {
+      min = obj;
     }
   }
 
-  for (let i = 0; i < array.length; i++) {
-    obj = array[i];
-    
-    for (let key in obj) {
-      if ((key === 'balance') && (obj[key] === secondMin)) {
-        new_arr.push(obj);
-      }
-    }  
-  }
-  return new_arr;
+  return [min];
 }
 
 

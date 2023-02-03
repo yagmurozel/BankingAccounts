@@ -6,27 +6,19 @@
 
 export function getAllAccountsWithSumsOfDepositsLess2000(array) {
 
-  let obj = {};
   let new_arr = [];
 
-  for (let i = 0; i < array.length; i++) {
-    obj = array[i];
-    let sum = 0;
-
-    if (obj.hasOwnProperty('deposits') === false) {
+  for (let obj of array) {
+    if (!obj.deposits) {
       new_arr.push(obj);
     }
-    
-    for (let key in obj) {
-      let value = obj[key];
-      if (key === 'deposits') {
-        for (let i = 0; i < value.length; i++) {
-          let deposit = value[i];
-          sum += deposit;
-        }
-        if ((sum < 2000)) {
-          new_arr.push(obj);
-        }
+    else {   
+      let sum = 0;
+      for (let deposit of obj.deposits) {
+        sum += deposit;
+      }
+      if (sum < 2000) {
+        new_arr.push(obj);
       }
     }  
   }

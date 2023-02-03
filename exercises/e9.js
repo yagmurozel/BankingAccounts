@@ -6,17 +6,11 @@
 
 export function getClientsWithBalanceOverOneHundred(array) {
   
-  let obj = {};
   let new_arr = [];
 
-  for (let i = 0; i < array.length; i++) {
-    obj = array[i];
-
-    for (let key in obj) {
-      let value = obj[key];
-      if ((key === 'balance') && (value > 100)) {
+  for (let obj of array) {
+      if (obj.balance > 100) {
         new_arr.push(obj);
-      }
     }
   }
 

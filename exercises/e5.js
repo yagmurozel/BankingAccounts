@@ -8,13 +8,8 @@ export function getAllClientNames(array) {
   
   let new_arr = [];
 
-  for (let i = 0; i < array.length; i++) {
-    let obj = array[i];
-    for (let key in obj) {
-      if (key === 'name') {
-        new_arr.push(obj[key]);
-      }
-    }  
+  for (let obj of array) {
+      new_arr.push(obj.name);
   }
 
   return new_arr;

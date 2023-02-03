@@ -7,35 +7,27 @@
 
 export function getClientsWithWrongBalance(array) {
   
-  let obj = {};
   let new_arr = [];
 
-  for (let i = 0; i < array.length; i++) {
-    obj = array[i];
+  for (let obj of array) {
     let sumOfDeposits = 0;
     let sumOfWithdrawals = 0;
     let balance;
 
-    for (let key in obj) {
-      let value = obj[key];
-      if (key === 'deposits') {
-        for (let i = 0; i < value.length; i++) {
-          let num = value[i];
-          sumOfDeposits += num;
-        }
-      } else if (key === 'withdrawals') {
-        for (let i = 0; i < value.length; i++) {
-          let num = value[i];
-          sumOfWithdrawals += num;
-        }
+    if (obj.deposits) {
+      for (let deposit of obj.deposits) {
+        sumOfDeposits += deposit;
       }
-      balance = sumOfDeposits - sumOfWithdrawals;
     }
-    
-    for (let key in obj) {
-      if ((key === 'balance') && (obj[key] !== balance)) {
-        new_arr.push(obj);
+    if (obj.withdrawals) {
+      for (let withdrawal of obj.withdrawals) {
+        sumOfWithdrawals += withdrawal;
       }
+    }
+    balance = sumOfDeposits - sumOfWithdrawals;
+    
+    if (obj.balance !== balance) {
+      new_arr.push(obj);
     }
   }
   return new_arr;

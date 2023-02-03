@@ -6,38 +6,15 @@
 
 export function getClientWithGreatestBalance(array) {
 
-  let max = -Infinity;
-  let obj = {};
-  let new_arr = [];
-  let valuesArray = [];
+  let max = array[0];
 
-  for (let i = 0; i < array.length; i++) {
-    obj = array[i];
-    
-    for (let key in obj) {
-      if (key === 'balance') {
-        let value = obj[key];
-        valuesArray.push(value);
-      }
-    }  
+  for (let obj of array) {
+    if (obj.balance > max.balance) {
+      max = obj;
+    }
   }
 
-  for (let i= 0; i< valuesArray.length; i++) {
-    if (valuesArray[i] > max) { 
-      max = valuesArray[i];
-    } 
-  }
-
-  for (let i = 0; i < array.length; i++) {
-    obj = array[i];
-    
-    for (let key in obj) {
-      if ((key === 'balance') && (obj[key] === max)) {
-        new_arr.push(obj);
-      }
-    }  
-  }
-  return new_arr;
+  return [max];
 
 }
 

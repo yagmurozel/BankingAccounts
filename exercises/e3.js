@@ -7,12 +7,10 @@ export function getAverage(array) {
   let sum = 0;
   let avg;
 
-  for (let i = 0; i < array.length; i++) {
-    let num = array[i];
+  for (let num of array) {
     sum += num;
-    avg = sum / array.length; 
-  }
-
+  }  
+  avg = sum / array.length; 
   return avg;
 
 }
